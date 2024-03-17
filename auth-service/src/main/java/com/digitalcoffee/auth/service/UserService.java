@@ -1,6 +1,6 @@
 package com.digitalcoffee.auth.service;
 
-import com.degitalcoffee.commons.UserRole;
+import com.digitalcoffee.commons.UserRole;
 import com.digitalcoffee.auth.dto.request.RegisterRequest;
 import com.digitalcoffee.auth.dto.request.UserUpdateRequest;
 import com.digitalcoffee.auth.dto.response.UserResponse;

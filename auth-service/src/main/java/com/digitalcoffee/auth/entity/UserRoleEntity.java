@@ -1,6 +1,6 @@
 package com.digitalcoffee.auth.entity;
 
-import com.degitalcoffee.commons.UserRole;
+import com.digitalcoffee.commons.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

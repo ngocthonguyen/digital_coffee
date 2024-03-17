@@ -1,6 +1,6 @@
 package com.digitalcoffee.auth.configuration;
 
-import com.degitalcoffee.commons.CustomClientHttpRequestInterceptor;
+import com.digitalcoffee.commons.CustomClientHttpRequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

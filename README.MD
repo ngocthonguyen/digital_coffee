@@ -12,7 +12,7 @@ Repository for Digital Coffee platform:
 - Notification service
 - Commons-lib library
 
-[Solution design](solution_design/README.md)
+[Solution design](solution-design/README.md)
 
 ## Build
 ```commandline

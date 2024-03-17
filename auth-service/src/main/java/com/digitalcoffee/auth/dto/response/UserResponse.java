@@ -1,6 +1,6 @@
 package com.digitalcoffee.auth.dto.response;
 
-import com.degitalcoffee.commons.UserRole;
+import com.digitalcoffee.commons.UserRole;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
