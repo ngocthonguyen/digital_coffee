@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  database:
+    image: mysql:latest
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    entrypoint:
+      sh -c "
+        echo 'CREATE DATABASE IF NOT EXISTS authentication_db; CREATE DATABASE IF NOT EXISTS customer_db; ; CREATE DATABASE IF NOT EXISTS menu_db; CREATE DATABASE IF NOT EXISTS camunda_db; CREATE DATABASE IF NOT EXISTS shop_db; CREATE DATABASE IF NOT EXISTS order_db;' > /docker-entrypoint-initdb.d/init.sql;
+        /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      "
+    ports:
+      - 3306:3306
+
+  solace:
+    image: solace/solace-pubsub-standard:latest
+    shm_size: 1g
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 1
+    ports:
+      - 55554:55554
+    environment:
+      - username_admin_globalaccesslevel=admin
+      - username_admin_password=admin
+      - system_scaling_maxconnectioncount=100
