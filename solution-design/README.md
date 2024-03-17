@@ -1,4 +1,4 @@
-# Solution design for 101Coffee
+# Solution design for Digital Coffee platform
 Solution design documentation for Digital Coffee market place
 
 ## Requirements
