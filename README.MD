@@ -21,5 +21,11 @@ mvn clean install
 
 ## Run servers
 ```commandline
-
+mvn spring-boot:run -pl dc-eureka
+mvn spring-boot:run -pl dc-api-gateway
+mvn spring-boot:run -pl dc-authentication
+mvn spring-boot:run -pl dc-customer
+mvn spring-boot:run -pl dc-shop
+mvn spring-boot:run -pl dc-order
+mvn spring-boot:run -pl dc-menu
 ```
