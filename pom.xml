@@ -8,7 +8,7 @@
     <version>1.0.0</version>
 
     <name>dc-root</name>
-    <description>digital_coffee-root</description>
+    <description>dc-root</description>
     <packaging>pom</packaging>
 
     <modules>

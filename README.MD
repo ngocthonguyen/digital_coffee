@@ -20,6 +20,8 @@ mvn clean install
 ```
 
 ## Run servers
+
+// TODO: Use single command
 ```commandline
 mvn spring-boot:run -pl dc-eureka
 mvn spring-boot:run -pl dc-api-gateway
