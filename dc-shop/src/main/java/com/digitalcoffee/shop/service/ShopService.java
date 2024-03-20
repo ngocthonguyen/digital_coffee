@@ -39,7 +39,7 @@ public class ShopService {
     }
 
     public Shop updateShop(Shop shop) {
-        ShopRoot root = shopRepository.findByRef(shop.getShopRef()).get();
+        ShopRoot root = shopRepository.findByRef(shop.getRef()).get();
 
         mapper.updateEntity(root, shop);
         root.getOperators().clear();

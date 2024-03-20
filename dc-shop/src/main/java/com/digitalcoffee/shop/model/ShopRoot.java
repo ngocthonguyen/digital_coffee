@@ -16,20 +16,21 @@ import java.util.Objects;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "dc_shop")
+@Table(name = "dc_shop",
+        uniqueConstraints = @UniqueConstraint(columnNames={"ref"}))
 public class ShopRoot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String ref;
 
-    @Column
+    @Column(nullable = false)
     private String shopName;
 
-    @Column
+    @Column(nullable = false)
     private String ownerUsername;
     @Column
     private String phoneNumber;

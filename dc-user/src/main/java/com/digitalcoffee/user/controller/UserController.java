@@ -1,5 +1,6 @@
 package com.digitalcoffee.user.controller;
 
+import com.digitalcoffee.commons.UserRole;
 import com.digitalcoffee.user.dto.request.*;
 import com.digitalcoffee.user.dto.response.AuthenticationResponse;
 import com.digitalcoffee.user.dto.response.IntrospectResponse;
@@ -12,6 +13,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -27,9 +29,17 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/register")
-    ApiResponse<UserResponse> register(@RequestBody @Valid RegisterRequest request){
+    ApiResponse<UserResponse> register(@RequestBody @Valid UserCreationRequest request){
         return ApiResponse.<UserResponse>builder()
-                .result(userService.createCustomer(request))
+                .result(userService.createUser(request, UserRole.CUSTOMER))
+                .build();
+    }
+
+    @PostMapping("/")
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
+    ApiResponse<UserResponse> createShopAdmin(@RequestBody @Valid UserCreationRequest request){
+        return ApiResponse.<UserResponse>builder()
+                .result(userService.createUser(request, request.getRole()))
                 .build();
     }
 

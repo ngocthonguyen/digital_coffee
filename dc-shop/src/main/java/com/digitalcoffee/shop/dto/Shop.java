@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Shop {
 
-    private String shopRef;
+    private String ref;
     private String shopName;
     private String ownerUsername;
     private String phoneNumber;

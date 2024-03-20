@@ -17,7 +17,7 @@
 							"script": {
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"jwt_token\", jsonData.result.token);"
+									"pm.collectionVariables.set(\"jwt_token\", jsonData.result.token);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -136,7 +136,7 @@
 							"script": {
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"jwt_token\", jsonData.result.token);"
+									"pm.collectionVariables.set(\"jwt_token\", jsonData.result.token);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -185,7 +185,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"shopRef\": \"shop1\",\n  \"shopName\": \"Super Coffee Shop\",\n  \"ownerUsername\": \"shop1admin\",\n  \"phoneNumber\": \"0783198078\",\n  \"address\": \"Hanoi\",\n  \"operators\": [\n    \"shop1operator1\"\n  ]\n}",
+							"raw": "{\n  \"ref\": \"shop1\",\n  \"shopName\": \"Super Coffee Shop\",\n  \"ownerUsername\": \"shop1admin\",\n  \"phoneNumber\": \"0783198078\",\n  \"address\": \"Hanoi\",\n  \"operators\": [\n    \"shop1operator1\"\n  ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -222,7 +222,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Capuccino\",\n  \"description\": \"Capuccino\",\n  \"price\": 10,\n  \"shopRef\": \"shop1\"\n}",
+							"raw": "{\n  \"name\": \"Egg Coffee\",\n  \"description\": \"Egg Coffee\",\n  \"price\": 10,\n  \"shopRef\": \"shop1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -244,6 +244,19 @@
 				},
 				{
 					"name": "Shop 1 Admin - List products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"product_id\", jsonData[0].id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -362,7 +375,7 @@
 							"script": {
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"jwt_token\", jsonData.result.token);"
+									"pm.collectionVariables.set(\"jwt_token\", jsonData.result.token);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -444,7 +457,7 @@
 							"script": {
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"jwt_token\", jsonData.result.token);"
+									"pm.collectionVariables.set(\"jwt_token\", jsonData.result.token);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -493,7 +506,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"customerUsername\": \"peter\",\n  \"shopRef\": \"shop1\",\n  \"lines\": [\n    {\n      \"productId\": 1,\n      \"nb\": 2\n    }\n  ]\n}",
+							"raw": "{\n  \"customerUsername\": \"peter\",\n  \"shopRef\": \"shop1\",\n  \"lines\": [\n    {\n      \"productId\": {{product_id}},\n      \"nb\": 2\n    }\n  ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -555,7 +568,7 @@
 							"script": {
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"jwt_token\", jsonData.result.token);"
+									"pm.collectionVariables.set(\"jwt_token\", jsonData.result.token);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -589,6 +602,19 @@
 				},
 				{
 					"name": "Shop 1 - List orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"order_id\", jsonData[0].id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -637,7 +663,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/orders/{{order_id}}/newStatus?newStatus=QUEUED",
+							"raw": "{{base_url}}/orders/{{order_id}}/newStatus?newStatus=IN_PROGRESS",
 							"host": [
 								"{{base_url}}"
 							],
@@ -649,7 +675,7 @@
 							"query": [
 								{
 									"key": "newStatus",
-									"value": "QUEUED"
+									"value": "IN_PROGRESS"
 								}
 							]
 						}
@@ -664,7 +690,7 @@
 							"script": {
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"jwt_token\", jsonData.result.token);"
+									"pm.collectionVariables.set(\"jwt_token\", jsonData.result.token);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -778,7 +804,7 @@
 							"script": {
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"jwt_token\", jsonData.result.token);"
+									"pm.collectionVariables.set(\"jwt_token\", jsonData.result.token);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -853,7 +879,7 @@
 							"script": {
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"jwt_token\", jsonData.result.token);"
+									"pm.collectionVariables.set(\"jwt_token\", jsonData.result.token);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1033,10 +1059,6 @@
 	],
 	"variable": [
 		{
-			"key": "order_id",
-			"value": "153"
-		},
-		{
 			"key": "jwt_token",
 			"value": "",
 			"type": "string"
@@ -1045,6 +1067,15 @@
 			"key": "base_url",
 			"value": "localhost:8080",
 			"type": "string"
+		},
+		{
+			"key": "product_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "order_id",
+			"value": ""
 		}
 	]
 }

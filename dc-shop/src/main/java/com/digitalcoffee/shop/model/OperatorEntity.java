@@ -1,6 +1,7 @@
 package com.digitalcoffee.shop.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -21,6 +22,7 @@ public class OperatorEntity {
     private Long id;
 
     @Column
+    @NotNull
     private String username;
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)

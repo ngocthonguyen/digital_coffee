@@ -1,7 +1,7 @@
 package com.digitalcoffee.user.service;
 
 import com.digitalcoffee.commons.UserRole;
-import com.digitalcoffee.user.dto.request.RegisterRequest;
+import com.digitalcoffee.user.dto.request.UserCreationRequest;
 import com.digitalcoffee.user.dto.request.UserUpdateRequest;
 import com.digitalcoffee.user.dto.response.UserResponse;
 import com.digitalcoffee.user.entity.UserRoot;
@@ -26,12 +26,12 @@ public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
     CustomerServiceProxy customerService;
-    public UserResponse createCustomer(RegisterRequest request){
+    public UserResponse createUser(UserCreationRequest request, UserRole role){
         if (userRepository.existsByUsername(request.getUsername().toLowerCase()))
             throw new AppException(ErrorCode.USER_EXISTED);
 
         UserRoot userRoot = userMapper.toUser(request);
-        userRoot.addRole(UserRole.CUSTOMER);
+        userRoot.addRole(role);
         userRoot.setUsername(userRoot.getUsername().toLowerCase());
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         userRoot.setPassword(passwordEncoder.encode(request.getPassword()));
