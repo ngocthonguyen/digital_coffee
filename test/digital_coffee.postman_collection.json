@@ -50,6 +50,43 @@
 					"response": []
 				},
 				{
+					"name": "Admin - Create Shop 1 admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"shop1admin\",\n    \"password\": \"password\",\n    \"lastName\": \"NGUYEN\",\n    \"firstName\": \"Shop 1 Admin\",\n    \"role\": \"SHOP_ADMIN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Admin - Create Shop 1",
 					"request": {
 						"auth": {
@@ -80,6 +117,43 @@
 							],
 							"path": [
 								"shops",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Create Shop 2 admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"shop2admin\",\n    \"password\": \"password\",\n    \"lastName\": \"NGUYEN\",\n    \"firstName\": \"Shop 2 Admin\",\n    \"role\": \"SHOP_ADMIN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
 								""
 							]
 						}
@@ -952,87 +1026,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Admin Register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"password\",\n    \"firstName\": \"Admin\",\n    \"lastName\": \"NGUYEN\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/users/register",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"users",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Shop 1 Admin Register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"username\": \"shop1admin\",\n    \"password\": \"password\",\n    \"lastName\": \"NGUYEN\",\n    \"firstName\": \"Shop 1 Admin\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/users/register",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"users",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Shop 2 Admin Register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"username\": \"shop2admin\",\n    \"password\": \"password\",\n    \"lastName\": \"NGUYEN\",\n    \"firstName\": \"Shop 2 Admin\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/users/register",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"users",
-						"register"
-					]
-				}
-			},
-			"response": []
 		}
 	],
 	"event": [
