@@ -43,7 +43,7 @@ They have identified the following needs:
 ## Use cases
 
 ### Admin use cases
-![admin use cases](use_cases_customer.png)
+![admin use cases](use_cases_admin.png)
 
 ### Customer use cases
 ![Customer use cases](use_cases_customer.png)
