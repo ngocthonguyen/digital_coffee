@@ -1,6 +1,7 @@
 package com.digitalcoffee.order.controller;
 
 import com.digitalcoffee.order.dto.Order;
+import com.digitalcoffee.order.dto.OrderCreationRequest;
 import com.digitalcoffee.order.service.OrderService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,14 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping(value = "")
-    public List<Order> findOrdersByCustomerId(@RequestParam("customerUsername") @NonNull String customerUsername) {
-        return orderService.findOrderByCustomerUsername(customerUsername);
+    @GetMapping(value = "/customer")
+    public List<Order> findOrdersByCustomerId(@RequestParam("username") @NonNull String username) {
+        return orderService.findOrdersByCustomerUsername(username);
+    }
+
+    @GetMapping(value = "/shop")
+    public List<Order> findOrdersByShopRef(@RequestParam("shopRef") @NonNull String shopRef) {
+        return orderService.findOrdersByShopRef(shopRef);
     }
 
     @GetMapping(value = "/{orderId}")
@@ -30,7 +36,14 @@ public class OrderController {
     }
 
     @PostMapping(value = "/")
-    public Order save(@RequestBody Order order){
+    public Order create(@RequestBody OrderCreationRequest order){
         return orderService.create(order);
+    }
+
+    @PutMapping(value = "/{orderId}/newStatus")
+    public Order update(
+            @PathVariable("orderId") Long orderId,
+            @RequestParam("newStatus") String newStatus){
+        return orderService.updateOrderStatus(orderId, newStatus);
     }
 }

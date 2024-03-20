@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "mc_order_line")
+@Table(name = "dc_order_line")
 public class OrderLineEntity {
 
     @Id

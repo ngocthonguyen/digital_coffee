@@ -32,35 +32,4 @@ public class NotificationServiceApp {
         return servlet;
     }
 
-    @Bean
-    @Primary
-    public RestTemplate orderService(){
-        RestTemplate restTemplate = new RestTemplate();
-
-        List<ClientHttpRequestInterceptor> interceptors
-                = restTemplate.getInterceptors();
-        if (CollectionUtils.isEmpty(interceptors)) {
-            interceptors = new ArrayList<>();
-        }
-        interceptors.add(new ClientHttpRequestInterceptor() {
-            @Override
-            public ClientHttpResponse intercept(HttpRequest httpRequest, byte[] bytes, ClientHttpRequestExecution clientHttpRequestExecution) throws IOException {
-                httpRequest.getHeaders().add("Authorization", getBearerTokenHeader());
-                return clientHttpRequestExecution.execute(httpRequest,bytes);
-            }
-        });
-        restTemplate.setInterceptors(interceptors);
-        return restTemplate;
-    }
-
-    @Bean(name = "tokenVerifier")
-    public RestTemplate tokenVerifier(){
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate;
-    }
-
-    public String getBearerTokenHeader() {
-        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getHeader("Authorization");
-    }
-
 }

@@ -25,12 +25,8 @@ spring:
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/orders/**
-        - id: AUTHENTICATION-SERVICE
-          uri: lb://AUTHENTICATION-SERVICE
-          predicates:
-            - Path=/auth/**
         - id: USER-SERVICE
-          uri: lb://AUTHENTICATION-SERVICE
+          uri: lb://USER-SERVICE
           predicates:
             - Path=/users/**
         - id: NOTIFICATION-SERVICE
@@ -47,4 +43,4 @@ spring:
             - Path=/menus/**
 logging:
   level:
-    root: INFO
+    root: DEBUG

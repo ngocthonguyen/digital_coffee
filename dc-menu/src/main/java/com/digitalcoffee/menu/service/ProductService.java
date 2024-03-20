@@ -25,8 +25,8 @@ public class ProductService {
         return mapper.mapToDto(productEntity);
     }
 
-    public List<Product> findProductsByShopId(String customerId){
-        return this.productRepository.findByShopId(customerId)
+    public List<Product> findProductsByShopId(String shopRef){
+        return this.productRepository.findByShopRef(shopRef)
                 .stream().map(mapper::mapToDto).toList();
     }
 

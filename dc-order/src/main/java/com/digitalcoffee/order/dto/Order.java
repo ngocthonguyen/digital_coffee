@@ -16,7 +16,7 @@ public class Order {
     private Long id;
     private Date orderDate;
     private String customerUsername;
-    private Long shopId;
+    private String shopRef;
     private String status;
     private List<OrderLine> lines = new ArrayList<>(0);
 

@@ -14,7 +14,8 @@
     <modules>
         <module>dc-api-gateway</module>
         <module>dc-eureka</module>
-        <module>dc-authentication</module>
+        <module>dc-user</module>
+        <module>dc-shop</module>
         <module>dc-notification</module>
         <module>dc-order</module>
         <module>dc-customer</module>

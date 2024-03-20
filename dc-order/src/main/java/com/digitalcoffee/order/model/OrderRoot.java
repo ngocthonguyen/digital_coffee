@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "mc_order")
+@Table(name = "dc_order")
 public class OrderRoot {
 
     @Id
@@ -27,7 +27,7 @@ public class OrderRoot {
     private String customerUsername;
 
     @Column
-    private Long shopId;
+    private String shopRef;
 
     @Column
     private String status;
@@ -35,4 +35,7 @@ public class OrderRoot {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "order")
     private List<OrderLineEntity> lines = new ArrayList<>(0);
 
+    public void addLine(Long productId, int quantity){
+        lines.add(new OrderLineEntity(null, productId, quantity, this));
+    }
 }

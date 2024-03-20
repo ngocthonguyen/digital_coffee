@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface OrderDetailsRepository extends CrudRepository<OrderRoot, Long> {
-    List<OrderRoot> findOrdersByCustomerUsername(String customerUdername);
+    List<OrderRoot> findByCustomerUsername(String username);
+    List<OrderRoot> findByShopRef(String shopRef);
 }

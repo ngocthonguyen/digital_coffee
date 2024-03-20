@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "mc_product")
+@Table(name = "dc_product")
 public class ProductEntity {
 
     @Id
@@ -28,6 +28,6 @@ public class ProductEntity {
     private BigDecimal price;
 
     @Column(nullable = false)
-    private Long shopId;
+    private String shopRef;
 
 }

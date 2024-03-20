@@ -21,7 +21,7 @@ public class OrderServiceProxy {
 
     public List<Order> getCustomerOrders(String username){
         ServiceInstance serviceInstance = discoveryClient.getInstances("API-GATEWAY-SERVICE").iterator().next();
-        String url = serviceInstance.getUri().toString() + "/orders?customerUsername=" + username;
+        String url = serviceInstance.getUri().toString() + "/orders/customer?username=" + username;
         return List.of(Objects.requireNonNull(restTemplate.getForEntity(url, Order[].class).getBody()));
     }
 }

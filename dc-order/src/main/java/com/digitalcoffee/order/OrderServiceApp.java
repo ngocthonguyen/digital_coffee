@@ -20,15 +20,4 @@ public class OrderServiceApp {
         servlet.setThreadContextInheritable(true);
         return servlet;
     }
-
-    @Bean(name = "tokenVerifier")
-    public RestTemplate tokenVerifier(){
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate;
-    }
-
-    public static String getBearerTokenHeader() {
-        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getHeader("Authorization");
-    }
-
 }

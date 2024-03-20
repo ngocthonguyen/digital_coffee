@@ -1,6 +1,7 @@
 package com.digitalcoffee.order.service;
 
 import com.digitalcoffee.order.dto.Order;
+import com.digitalcoffee.order.dto.OrderCreationRequest;
 import com.digitalcoffee.order.mapper.OrderMapper;
 import com.digitalcoffee.order.model.Notification;
 import com.digitalcoffee.order.model.OrderRoot;
@@ -8,6 +9,7 @@ import com.digitalcoffee.order.repository.OrderDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,20 +25,21 @@ public class OrderService {
     @Autowired
     private OrderMapper mapper;
 
-    public Order create(Order order){
-        OrderRoot orderRoot = orderRepository.save(mapper.mapToEntity(order));
+    public Order create(OrderCreationRequest order){
 
-        Notification notification = new Notification();
-        notification.setUsername(order.getCustomerUsername());
-        notification.setNotificationType("SMS");
-        notification.setMobileNo("99 99 99 99 99");
-        notificationServiceClient.sendNotification(notification);
+        final OrderRoot orderRoot = new OrderRoot();
+        order.getLines().forEach(l->orderRoot.addLine(l.getProductId(), l.getNb()));
+        orderRoot.setOrderDate(new Date());
+        orderRoot.setStatus("CREATED");
+        orderRoot.setCustomerUsername(order.getCustomerUsername());
+        orderRoot.setShopRef(order.getShopRef());
 
-        return mapper.mapToDto(orderRoot);
+        OrderRoot root = orderRepository.save(orderRoot);
+        return mapper.mapToDto(root);
     }
 
-    public List<Order> findOrderByCustomerUsername(String customerId){
-        return this.orderRepository.findOrdersByCustomerUsername(customerId)
+    public List<Order> findOrdersByCustomerUsername(String customerId){
+        return this.orderRepository.findByCustomerUsername(customerId)
                 .stream().map(mapper::mapToDto).toList();
     }
 
@@ -44,4 +47,16 @@ public class OrderService {
         return this.orderRepository.findById(orderId).map(mapper::mapToDto);
     }
 
+    public List<Order> findOrdersByShopRef(String shopRef) {
+        return this.orderRepository.findByShopRef(shopRef)
+                .stream().map(mapper::mapToDto).toList();
+    }
+
+    public Order updateOrderStatus(Long orderId, String newStatus) {
+        this.orderRepository.findById(orderId).ifPresent(o->{
+            o.setStatus(newStatus);
+            this.orderRepository.save(o);
+        });
+        return this.findOrderById(orderId).get();
+    }
 }
