@@ -4,7 +4,7 @@ spring:
   zipkin:
     base-url: http://localhost:9411/
   datasource:
-    url: "jdbc:postgresql://localhost:5432/digital_coffee"
+    url: "jdbc:postgresql://localhost:5435/digital_coffee"
     username: digital_coffee
     password: password
   jpa:
@@ -16,6 +16,8 @@ spring:
         #dialect: org.hibernate.dialect.MySQL8Dialect
         hbm2ddl:
           create_namespaces: true
+  flyway:
+    enabled: false
 
   cloud:
     compatibility-verifier:

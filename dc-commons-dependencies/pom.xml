@@ -79,6 +79,12 @@
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>9.22.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
