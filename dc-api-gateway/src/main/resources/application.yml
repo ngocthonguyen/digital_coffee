@@ -43,4 +43,4 @@ spring:
             - Path=/menus/**
 logging:
   level:
-    root: DEBUG
+    root: INFO

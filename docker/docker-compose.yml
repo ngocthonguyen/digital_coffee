@@ -1,17 +1,18 @@
 version: '3.9'
 
 services:
-  db:
-    image: postgres:latest
+  postgres:
+    image: postgres:15.2
     restart: always
     environment:
-      POSTGRES_DB: digital_coffee
-      POSTGRES_USER: digital_coffee
-      POSTGRES_PASSWORD: password
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_USER=digital_coffee
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=digital_coffee
     ports:
-      - '5432:5432'
+      - "5432:5432"
     volumes:
-      - db:/var/lib/postgresql/data
+      - ./init_postgres/docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
 
   solace:
     image: solace/solace-pubsub-standard:latest
