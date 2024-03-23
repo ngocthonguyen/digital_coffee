@@ -42,6 +42,9 @@ They have identified the following needs:
 
 ## Use cases
 
+### Admin use cases
+![admin use cases](use_cases_admin.png)
+
 ### Customer use cases
 ![Customer use cases](use_cases_customer.png)
 
@@ -56,21 +59,55 @@ They have identified the following needs:
 ### Component diagram
 ![Component_diagram](component_diagram.svg)
 
+To build Digital Coffee platform, we would need to create multiple microservices with different responsibilities:
+- Auth service: for user authentication and authorizations
+- Shop service: for shop data operations
+- Menu service: for menu content operations
+- Customer service: for customer data operations
+- Order service: for order operations
+- Payment service: allowing customers to pay their orders
+- Location service: allowing customers to locate shops
+- Notification service: to notify customer and shop via different channels (email, push, sms...)
+
+We can also add other technical components like:
+- API gateway to be unique entry point for mobile apps
+- Discovery service (ex. Netflix Eureka)
+- Messaging broker (ex. Solace) to enable asynch communication between microservices
+- Workflow engine (ex. Camunda) to coordinate order processes
+- Elastics server for logs
+- ...
+
+### Tech stack:
+- Spring Boot 3
+- Spring Security
+- Spring JPA
+- Postgres
+- Lombok
+- Mapstruct
+- Flyway
+- ...
+
 ## Deployment
 
-Digital Coffe platform will be deployed on AWS
+Digital Coffe platform is expected to be deployed on AWS
 
 ### Deployment diagram
 
 ### Security
+In order to secure access to Digital coffee platform, it's recommended to adopt a standard authentication/authorization solution like Oauth2 + JWT.
 
 ### Performance
 
 ## Implementation
 
+### Order process workflow
+![Order process workflow](order_process.png)
+
 ### Create order sequence diagram
+![Create order](Sequence_Create_order.png)
 
 ### Handle order sequence diagram
+![Sequence_handle_order.png](Sequence_handle_order.png)
 
 ## Estimation
 

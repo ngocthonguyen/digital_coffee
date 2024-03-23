@@ -1,6 +1,12 @@
 package com.digitalcoffee.user.configuration;
 
 import com.digitalcoffee.commons.CustomClientHttpRequestInterceptor;
+import com.digitalcoffee.commons.UserRole;
+import com.digitalcoffee.user.entity.UserRoot;
+import com.digitalcoffee.user.repository.UserRepository;
+import com.digitalcoffee.user.service.UserService;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -68,5 +74,21 @@ public class SecurityConfig {
         interceptors.add(new CustomClientHttpRequestInterceptor());
         restTemplate.setInterceptors(interceptors);
         return restTemplate;
+    }
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @PostConstruct
+    public void createAdminUser(){
+        if(userRepository.findByUsername("admin").isEmpty()){
+            UserRoot admin = new UserRoot();
+            admin.setUsername("admin");
+            admin.setPassword("$2a$10$6DvxKxtP8R0PtoRxgTfKj.aA.z0fl9PTejhOTY/IHnPVc4sLwM0nO");
+            admin.setFirstName("admin");
+            admin.setLastName("admin");
+            admin.addRole(UserRole.ADMIN);
+            userRepository.save(admin);
+        }
     }
 }
