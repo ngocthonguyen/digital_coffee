@@ -2,19 +2,19 @@ spring:
   application:
     name: user-service
   datasource:
-    url: "jdbc:postgresql://localhost:5433/digital_coffee"
+    url: "jdbc:postgresql://localhost:5432/user_db"
     username: digital_coffee
     password: password
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
         hbm2ddl:
           create_namespaces: true
   flyway:
-    enabled: false
+    enabled: true # enable Flyway
 
 jwt:
   signerKey: "1TjXchw5FloESb63Kc+DFhTARvpWL4jUGCwfGWxuG5SIf/1y/LgJxHnMqaF6A/ij"

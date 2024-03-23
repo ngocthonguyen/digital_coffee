@@ -26,7 +26,8 @@ public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
     CustomerServiceProxy customerService;
-    public UserResponse createUser(UserCreationRequest request, UserRole role){
+
+    public UserResponse createUser(UserCreationRequest request, UserRole role) {
         if (userRepository.existsByUsername(request.getUsername().toLowerCase()))
             throw new AppException(ErrorCode.USER_EXISTED);
 
@@ -36,7 +37,9 @@ public class UserService {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         userRoot.setPassword(passwordEncoder.encode(request.getPassword()));
 
-        customerService.createCustomer(request.getUsername());
+        if (role.equals(UserRole.CUSTOMER)) {
+            customerService.createCustomer(request.getUsername());
+        }
         return userMapper.toUserResponse(userRepository.save(userRoot));
     }
 
@@ -49,12 +52,12 @@ public class UserService {
         return userMapper.toUserResponse(userRepository.save(userRoot));
     }
 
-    public List<UserResponse> getUsers(){
+    public List<UserResponse> getUsers() {
         return userRepository.findAll().stream()
                 .map(userMapper::toUserResponse).toList();
     }
 
-    public UserResponse getUser(String id){
+    public UserResponse getUser(String id) {
         return userMapper.toUserResponse(userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found")));
     }
