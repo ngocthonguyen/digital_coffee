@@ -70,3 +70,10 @@ It's also possible to test the application via Swagger UI:
 To test protected endpoints via swagger, we need to provide Bear JWT token.
 To get a jwt token, we can use users/login endpoint with admin/password.
 ![Swagger](test/swagger_authorize.png)
+
+## TODO
+- Add unit and integration tests
+- Add data access control
+- Use JMS to allow asynch communication between services (ex. notification)
+- Use Camunda to manage business process (ex.order process, data change...)
+- Add scheduled jobs to clean orphan orders

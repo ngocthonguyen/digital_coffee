@@ -17,8 +17,7 @@ public class SwaggerConfiguration {
     public OpenAPI openAPI() {
         return new OpenAPI().addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
                 .components(new Components().addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()))
-                .info(new Info().title("Digital Coffee Customer REST API")
-                        .description("Digital Coffee Customer REST API.")
+                .info(new Info().title("Digital Coffee Notification REST API")
                         .version("1.0").contact(new Contact().name("Ngoc Tho NGUYEN")
                                 .email( "digitalcoffee.com")
                                 .url("ngoctho.nguyen@gmail.com"))
