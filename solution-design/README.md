@@ -80,6 +80,8 @@ We can also add other technical components like:
 ### Tech stack:
 - Spring Boot 3
 - Spring Security
+- OAUTH2
+- JWT
 - Spring JPA
 - Postgres
 - Lombok
