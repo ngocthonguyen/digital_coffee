@@ -1,0 +1,93 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15.2
+    restart: always
+    environment:
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_USER=digital_coffee
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=digital_coffee
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+
+  solace:
+    image: solace/solace-pubsub-standard:latest
+    shm_size: 1g
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 1
+    ports:
+      - "55554:55554"
+    environment:
+      - username_admin_globalaccesslevel=admin
+      - username_admin_password=admin
+      - system_scaling_maxconnectioncount=100
+
+  dc-eureka:
+    image: digital_coffee/dc-eureka
+    ports:
+      - "8761:8761"
+    environment:
+      - SERVICE_HOST=dc-eureka
+
+  dc-api-gateway:
+    image: digital_coffee/dc-api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_HOST=dc-eureka
+      - SERVICE_HOST=dc-api-gateway
+
+  dc-user:
+    image: digital_coffee/dc-user
+    ports:
+      - "8484:8484"
+    environment:
+      - EUREKA_HOST=dc-eureka
+      - POSTGRES_HOST=postgres
+      - SERVICE_HOST=dc-user
+
+  dc-customer:
+    image: digital_coffee/dc-customer
+    ports:
+      - "8181:8181"
+    environment:
+      - EUREKA_HOST=dc-eureka
+      - POSTGRES_HOST=postgres
+      - SERVICE_HOST=dc-customer
+
+  dc-shop:
+    image: digital_coffee/dc-shop
+    ports:
+      - "8686:8686"
+    environment:
+      - EUREKA_HOST=dc-eureka
+      - POSTGRES_HOST=postgres
+      - SERVICE_HOST=dc-shop
+
+  dc-menu:
+    image: digital_coffee/dc-menu
+    ports:
+      - "8585:8585"
+    environment:
+      - EUREKA_HOST=dc-eureka
+      - POSTGRES_HOST=postgres
+      - SERVICE_HOST=dc-menu
+
+  dc-order:
+    image: digital_coffee/dc-order
+    ports:
+      - "8282:8282"
+    environment:
+      - EUREKA_HOST=dc-eureka
+      - POSTGRES_HOST=postgres
+      - SERVICE_HOST=dc-order
+
+volumes:
+  db:
+    driver: local

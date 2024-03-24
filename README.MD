@@ -15,7 +15,7 @@ Repository for Digital Coffee platform:
 ## Solution design
 The solution design and other details are outlined in this document: [Solution design](solution-design/README.md)
 
-## Clone from Github
+## Clone source code from Github
 ```commandline
 git clone https://github.com/ngocthonguyen/digital_coffee.git
 ```
@@ -25,17 +25,17 @@ git clone https://github.com/ngocthonguyen/digital_coffee.git
 cd digital_coffee
 mvn clean install
 ```
+PS: Docker engine is required because Docker images will be built in the same time.
 
-## Run PostgresSQL and Solace docker
-```commandline
-cd docker
-docker-compose pull
-docker-compose run
-```
 
 ## Run microservices
 
-// TODO: Use single command
+### Via Docker compose
+```commandline
+docker compose up
+```
+
+### Via Maven
 ```commandline
 cd ..
 mvn spring-boot:run -pl dc-eureka
