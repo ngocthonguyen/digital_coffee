@@ -8,10 +8,12 @@ server:
   port: 8383
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${SERVICE_HOST:localhost}
   client:
     serviceUrl:
-      defaultZone : http://${eureka.instance.hostname}:8761/eureka/
+      defaultZone : http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+  server:
+    eviction-interval-timer-in-ms: 1000
 
 security:
   basic:
