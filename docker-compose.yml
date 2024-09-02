@@ -14,20 +14,6 @@ services:
     volumes:
       - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
 
-  solace:
-    image: solace/solace-pubsub-standard:latest
-    shm_size: 1g
-    deploy:
-      restart_policy:
-        condition: on-failure
-        max_attempts: 1
-    ports:
-      - "55554:55554"
-    environment:
-      - username_admin_globalaccesslevel=admin
-      - username_admin_password=admin
-      - system_scaling_maxconnectioncount=100
-
   dc-eureka:
     image: digital_coffee/dc-eureka
     ports:
