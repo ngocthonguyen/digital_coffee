@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: customer-service
+  zipkin:
+    base-url: http://localhost:9411/
+  datasource:
+    url: "jdbc:postgresql://${POSTGRES_HOST:localhost}:5432/customer_db"
+    username: digital_coffee
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        hbm2ddl:
+          create_namespaces: true
+  flyway:
+    enabled: true # enable Flyway
+
+  cloud:
+    compatibility-verifier:
+      enabled: false
+
+server:
+  port: 8181
+eureka:
+  instance:
+    hostname: ${SERVICE_HOST:localhost}
+  client:
+    serviceUrl:
+      defaultZone : http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+logging:
+  level:
+    root: INFO
+
+jwt:
+  signerKey: "1TjXchw5FloESb63Kc+DFhTARvpWL4jUGCwfGWxuG5SIf/1y/LgJxHnMqaF6A/ij"

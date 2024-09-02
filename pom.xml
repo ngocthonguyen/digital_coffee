@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.digitalcoffee</groupId>
+    <artifactId>dc-root</artifactId>
+    <version>1.0.0</version>
+
+    <name>dc-root</name>
+    <description>dc-root</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>dc-api-gateway</module>
+        <module>dc-eureka</module>
+        <module>dc-user</module>
+        <module>dc-shop</module>
+        <module>dc-notification</module>
+        <module>dc-order</module>
+        <module>dc-customer</module>
+        <module>dc-commons-lib</module>
+        <module>dc-workflow-engine</module>
+        <module>dc-menu</module>
+        <module>dc-commons-dependencies</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
